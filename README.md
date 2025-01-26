@@ -83,5 +83,5 @@ streamlit run src/app.py
 
 ## Contact
     For questions or feedback, feel free to reach out:
-    Your Name: Vishal Yadav
+    Vishal Yadav
     GitHub Profile: (https://github.com/AvishalYadav)
