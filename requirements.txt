@@ -1,5 +1,5 @@
 transformers==4.30.2
-torch==2.0.1
+torch>=2.2.0
 pandas==2.0.3
 streamlit==1.24.0
 plotly==5.15.0
