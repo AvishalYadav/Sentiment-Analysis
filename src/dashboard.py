@@ -5,13 +5,14 @@ import plotly.graph_objects as go
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import logging
+import os
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Dataset path
-FILE_PATH = r"E:\AI-Powered Customer Sentiment Analytics and Forecasting\data\cleaned_amazon_reviews.csv"
+# Use relative path for data
+FILE_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'cleaned_amazon_reviews.csv')
 
 class SentimentDashboard:
     def __init__(self):
