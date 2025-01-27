@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import logging
 import os
@@ -28,20 +27,10 @@ class SentimentDashboard:
 
     def create_sentiment_plot(self):
         sentiment_counts = self.data['sentiment'].value_counts()
-        fig = px.bar(
-            x=sentiment_counts.index,
-            y=sentiment_counts.values,
-            title="Sentiment Distribution",
-            labels={'x': 'Sentiment', 'y': 'Count'},
-            color=sentiment_counts.index,
-            color_discrete_map={'positive': 'green', 'neutral': 'blue', 'negative': 'red'}
-        )
+        fig = px.pie(values=sentiment_counts.values, 
+                    names=sentiment_counts.index,
+                    title='Sentiment Distribution')
         return fig
-
-    def create_wordcloud(self, sentiment):
-        text = ' '.join(self.data[self.data['sentiment'] == sentiment]['cleaned_text'])
-        wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
-        return wordcloud
 
     def run_dashboard(self):
         st.set_page_config(page_title="Sentiment Analysis Dashboard", layout="wide")
@@ -57,18 +46,7 @@ class SentimentDashboard:
             st.error("The dataset does not contain sentiment analysis. Please run the sentiment analysis first.")
             return
 
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.plotly_chart(self.create_sentiment_plot(), use_container_width=True)
-        
-        with col2:
-            sentiment_filter = st.selectbox("Select Sentiment for WordCloud", ['positive', 'neutral', 'negative'])
-            wordcloud = self.create_wordcloud(sentiment_filter)
-            fig, ax = plt.subplots()
-            ax.imshow(wordcloud)
-            ax.axis('off')
-            st.pyplot(fig)
+        st.plotly_chart(self.create_sentiment_plot(), use_container_width=True)
 
         # Sample Reviews
         st.subheader("Sample Reviews")
