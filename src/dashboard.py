@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Use relative path for data
-FILE_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'cleaned_amazon_reviews.csv')
+FILE_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'sample_reviews.csv')
 
 class SentimentDashboard:
     def __init__(self):

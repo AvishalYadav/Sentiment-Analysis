@@ -34,4 +34,10 @@ ENV/
 # Project specific
 *.csv
 *.log
-.env 
+.env
+
+# Ignore large data files
+data/cleaned_amazon_reviews.csv
+
+# Don't ignore sample data
+!data/sample_reviews.csv 
